@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
   for (let button of buttons) {
     button.addEventListener("click", function () {
       if (this.getAttribute("data-type") === "submit") {
+        checkAnswer();
       } else {
         let gameType = this.getAttribute("data-type");
         runGame(gameType);
@@ -37,9 +38,48 @@ function runGame(gameType) {
   }
 }
 
-function checkAnswer() {}
+/**
+ * checks the answer against the first element in the returned calculateCorrectAnswer array.
+ */
+function checkAnswer() {
+  let userAnswer = parseInt(document.getElementById("answer-box").value);
+  let calculatedAnswer = calculateCorrectAnswer();
+  let isCorrect = userAnswer === calculatedAnswer[0];
 
-function calculateCorrectAnswer() {}
+  if (isCorrect) {
+    alert("Correct! :)");
+    incrementScore();
+  } else {
+    alert(`Incorrect! :( The correct answer was ${calculatedAnswer[0]}`);
+    incrementWrongAnswer();
+  }
+
+  runGame(calculatedAnswer[1]); // restart the game with the same type
+}
+
+/**
+ * gets the numbers from the dom and then works out the correct answer to the current question
+ * and returns it.
+ */
+function calculateCorrectAnswer() {
+  let operand1 = parseInt(document.getElementById("operand1").innerText);
+  let operand2 = parseInt(document.getElementById("operand2").innerText);
+  let operator = document.getElementById("operator").innerText;
+
+  switch (operator) {
+    case "+":
+      return [operand1 + operand2, "addition"];
+    case "-":
+      return [operand1 - operand2, "subtraction"];
+    case "*":
+      return [operand1 * operand2, "multiply"];
+    case "/":
+      return [operand1 / operand2, "division"];
+    default:
+      alert(`Unknown operator: ${operator}`);
+      throw `Unknown operator: ${operator}. Aborting!`;
+  }
+}
 
 function incrementScore() {}
 
