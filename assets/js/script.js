@@ -70,8 +70,8 @@ function calculateCorrectAnswer() {
     case "+":
       return [operand1 + operand2, "addition"];
     case "-":
-      return [operand1 - operand2, "subtraction"];
-    case "*":
+      return [operand1 - operand2, "subtract"];
+    case "x":
       return [operand1 * operand2, "multiply"];
     case "/":
       return [operand1 / operand2, "division"];
@@ -105,8 +105,22 @@ function displayAdditionQuestion(operand1, operand2) {
   document.getElementById("operator").textContent = "+";
 }
 
-function displaySubtractQuestion() {}
+function displaySubtractQuestion(operand1, operand2) {
+  document.getElementById("operand1").textContent =
+    operand1 > operand2 ? operand1 : operand2;
+  document.getElementById("operand2").textContent =
+    operand1 > operand2 ? operand2 : operand1;
+  document.getElementById("operator").textContent = "-";
+}
 
-function displayMultiplyQuestion() {}
+function displayMultiplyQuestion(operand1, operand2) {
+  document.getElementById("operand1").textContent = operand1;
+  document.getElementById("operand2").textContent = operand2;
+  document.getElementById("operator").textContent = "x";
+}
 
-function displayDivisionQuestion() {}
+function displayDivisionQuestion(operand1, operand2) {
+  //   document.getElementById("operand1").textContent = operand1;
+  //   document.getElementById("operand2").textContent = operand2;
+  //   document.getElementById("operator").textContent = "/";
+}
