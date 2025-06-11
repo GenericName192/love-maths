@@ -81,9 +81,23 @@ function calculateCorrectAnswer() {
   }
 }
 
-function incrementScore() {}
+/**
+ * gets the current score from the DOM and increments it by 1
+ * updates the DOM with the new score.
+ */
+function incrementScore() {
+  let oldScore = parseInt(document.getElementById("score").innerText);
+  document.getElementById("score").innerText = ++oldScore;
+}
 
-function incrementWrongAnswer() {}
+/**
+ * gets the current number of wrong answers from the DOM and increments it by 1
+ * updates the DOM with the new wrong answers.
+ */
+function incrementWrongAnswer() {
+  let oldWrongAnswer = parseInt(document.getElementById("incorrect").innerText);
+  document.getElementById("incorrect").innerText = ++oldWrongAnswer;
+}
 
 function displayAdditionQuestion(operand1, operand2) {
   document.getElementById("operand1").textContent = operand1;
