@@ -13,6 +13,16 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   }
+
+  document
+    .getElementById("answer-box")
+    .addEventListener("keydown", function (event) {
+      if (event.key === "Enter") {
+        checkAnswer();
+      }
+    });
+
+  // kick off the first game when the script is loaded
   runGame("addition");
 });
 
@@ -21,6 +31,10 @@ document.addEventListener("DOMContentLoaded", function () {
  * and after the user's answer has been processed.
  */
 function runGame(gameType) {
+  // clear the answer box
+  document.getElementById("answer-box").value = "";
+  document.getElementById("answer-box").focus();
+
   let num1 = Math.ceil(Math.random() * 25);
   let num2 = Math.ceil(Math.random() * 25);
 
